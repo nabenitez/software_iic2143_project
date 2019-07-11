@@ -1,14 +1,101 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Software</title>
+    <title>G14</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href=>Grupo14</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor02">
+    <ul class="navbar-nav mr-auto">
+      
+      <%- if user_signed_in? %>
+        <li class="nav-item active">
+          <%= link_to 'Home', root_path, class:'nav-link'%>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to 'Courses', courses_path, class:'nav-link'%>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to 'Study Groups', study_groups_path, class:'nav-link'%>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to 'Events', external_events_path, class:'nav-link'%>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to 'Tutorials', offer_tutorials_path, class:'nav-link'%>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to 'Study Rooms', study_rooms_path, class:'nav-link'%>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to 'My Courses', subscriptions_user_path(current_user), class:'nav-link'%>
+        </li>
+
+        <li class="nav-item">
+          <% if can? :read, User %>
+            <%= link_to 'Users', users_path, class:'nav-link' %>
+          <% end %>
+        </li>
+
+        <li class="nav-item">
+          <% if can? :read, User %>
+            <%= link_to 'MailBox', conversations_path, class:'nav-link' %>
+          <% end %>
+        </li>
+      <% end %>
+
+    </ul>
+    <ul class="nav justify-content-end">
+
+      <%- if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Profile", user_path(current_user.id) , class: 'btn btn-success' %>
+          <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-danger'%>
+
+        </li>
+
+        <% else %>
+
+        <li class="nav-item">
+          <%= link_to "Log in", new_user_session_path , class: 'btn btn-dark' %>
+          <%= link_to "Sign up", new_user_registration_path , class: 'btn btn-dark' %>
+
+        </li>
+
+
+
+      <% end%>
+
+    </ul>
+
+  </div>
+</nav>
+
+<div class='conteiner'>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+<%= yield %>
+</div>
+</body>
 </html>

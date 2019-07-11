@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @external_event.start %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @external_event.end %>
+</p>
+
+<%= link_to 'Edit', edit_external_event_path(@external_event) %> |
+<%= link_to 'Back', external_events_path %>

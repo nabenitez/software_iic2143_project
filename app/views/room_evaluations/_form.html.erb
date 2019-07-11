@@ -1,0 +1,40 @@
+<%= form_with(model: room_evaluation, local: true) do |form| %>
+  <% if room_evaluation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(room_evaluation.errors.count, "error") %> prohibited this room_evaluation from being saved:</h2>
+
+      <ul>
+      <% room_evaluation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :user_id, :value=> current_user.id%>
+  <%= form.hidden_field :study_room_id, :value=> @room_id%>
+
+  <div class="field">
+  <%= form.label :available_score %>
+  <%= form.number_field :available_score, id: :room_evaluation_available_score, max: 10, min:0 %><br>
+  </div>
+
+  <div class="field">
+  <%= form.label :noise_score %>
+  <%= form.number_field :noise_score, id: :room_evaluation_noise_score, max: 10, min:0 %><br>
+  </div>
+
+  <div class="field">
+  <%= form.label :plug_score %>
+  <%= form.number_field :plug_score, id: :room_evaluation_plug_score, max: 10, min:0 %><br>
+  </div>
+
+  <div class="field">
+  <%= form.label :comment %>
+  <%= form.text_field :comment, id: :room_evaluation_comment, maxlength: 50 %><br><br><br>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Submit', class:"btn btn-success"%>
+  </div>
+<% end %>

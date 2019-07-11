@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<div class='border-form-study-group' align="center">
+  <h1>Note
+  </h1>
+  <table style="text-align:center;" class="table table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Reputation score</th>
+        <th>File</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+          <td><%= @note.title %></td>
+          <td><%= @note.description %></td>
+          <td><%= @note.reputation_score %></td>
+          <td><%= link_to "Download", @note.file.url, class:"btn btn-success" %></td>
+        </tr>
+    </tbody>
+  </table>
+  <td><div class="btn-group" role="group" aria-label="...">
+  <%= link_to 'Edit', edit_note_path(@note), class:"btn btn-primary" %>
+  <%= link_to 'Back', course_notes_path(@note.course_id), class:"btn btn-secondary" %>
+  </div></td>
+</div>

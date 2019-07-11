@@ -1,0 +1,87 @@
+<%= form_with(model: study_group, local: true) do |form| %>
+  <% if study_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(study_group.errors.count, "error") %> prohibited this study_group from being saved:</h2>
+
+      <ul>
+      <% study_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-2">
+      </div>
+
+      <div class="col-align-items-left justify-content-left">
+
+          <%= form.label :name %>
+          <%= form.text_field :name, id: :study_group_name %>
+          <br>
+          <%= form.label :acronym %>
+          <%= form.text_field :acronym, id: :study_group_acronym %>
+
+          <br>
+
+          <%= form.label :start %>
+          <%= form.datetime_field :start, id: :study_group_start %>
+
+          <br>
+
+          <%= form.label :finish %>
+          <%= form.datetime_field :finish, id: :study_group_finish %>
+
+      </div>
+
+      <div class="col col-lg-2">
+      </div>
+
+    </div>
+
+  </div>
+
+    <div class="row">
+      <table style="text-align:center;" class="table table-bordered">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Available score</th>
+          <th>Noise score</th>
+          <th>Plug score</th>
+          <th>Capacity</th>
+          <th>Availability</th>
+
+        </tr>
+      </thead>
+
+    <tbody>
+      <% StudyRoom.all.each do |study_room| %>
+        <tr>
+          <td>
+            <div class="field">
+              <%= check_box_tag "study_room_id", study_room.id%>
+            </div></td>
+          <td>
+            <%= study_room.name %>
+          </td>
+          <td><%= study_room.available_score %></td>
+          <td><%= study_room.noise_score %></td>
+          <td><%= study_room.plug_score %></td>
+          <td><%= study_room.capacity %></td>
+          <td><%= study_room.availability %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+
+
+
+  <div class="actions">
+    <%= form.submit 'Submit', class:"btn btn-success" %>
+  </div>
+<% end %>

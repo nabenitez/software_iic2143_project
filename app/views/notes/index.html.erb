@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class='border-form-study-group' align="center">
+  <h1>Notes</h1>
+  <table style="text-align:center;" class="table table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Reputation score</th>
+        <th>File</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%- if @course%>
+        <% @course.notes.each do |note| %>
+          <tr>
+            <td><%= note.title %></td>
+            <td><%= note.description %></td>
+            <td><%= note.reputation_score %></td>
+            <td><%= link_to "Download", note.file.url %></td>
+            <td><div class="btn-group" role="group" aria-label="...">
+              <%= link_to 'Show', note, class:"btn btn-primary"  %>
+              <%= link_to 'Edit', edit_note_path(note), class:"btn btn-primary"  %>
+              <%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"  %>
+            </div></td>
+          </tr>
+        <% end %>
+
+      <%- else %>
+        <% Note.all.each do |note| %>
+          <tr>
+            <td><%= note.title %></td>
+            <td><%= note.content %></td>
+            <td><%= note.description %></td>
+            <td><%= note.reputation_score %></td>
+            <td><%= link_to 'Show', note %> | <%= link_to 'Edit', edit_note_path(note) %> | <%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      <% end %>
+
+
+    </tbody>
+  </table>
+
+
+  <br>
+<td><div class="btn-group" role="group" aria-label="...">
+  <%= link_to 'New Note', new_note_path, class:"btn btn-success" %>
+  <%= link_to 'Back', courses_path, class:"btn btn-secondary" %>
+</div></td>
+</div>

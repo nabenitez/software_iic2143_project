@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+<div class='border-form-study-group' align="center">
+
+<h1>Room Evaluations</h1>
+
+
+<table style="text-align:center;" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Former available score</th>
+      <th>Former noise score</th>
+      <th>Former plug score</th>
+      <th>Comment</th>
+      <th>Actions</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_rooms.each do |room| %>
+      <% eval = @room_evaluations.where({user_id: current_user.id, study_room_id: room.id}).first %>
+
+      <% if eval %>
+        <tr>
+          <td><%= room.name %></td>
+
+          <td><%= eval.available_score %></td>
+          <td><%= eval.noise_score %></td>
+          <td><%= eval.plug_score %></td>
+          <td><%= eval.comment %></td>
+
+          <td><%= link_to 'Edit', edit_room_evaluation_path(room.id) %></td>
+        </tr>
+
+      <% else %>
+        <tr>
+          <td><%= room.name %></td>
+
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+
+          <td><%= link_to 'Evaluate', new_room_evaluation_path(:room_id => room.id), class:"btn btn-success" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', study_rooms_path, class:"btn btn-primary" %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @search_tutorial.duration %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @search_tutorial.course %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @search_tutorial.start %>
+</p>
+
+<%= link_to 'Edit', edit_search_tutorial_path(@search_tutorial) %> |
+<%= link_to 'Back', search_tutorials_path %>

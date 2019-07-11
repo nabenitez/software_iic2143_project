@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<div class='border-form-profile' align="center">
+<h1 > User </h1>
+  <div class="row align-items-center justify-content-center">
+  <%= image_tag @user.picture.thumb.url, class: "figure-img- img-fluid rounded"%>
+  </div>
+<br>
+
+<div class="row">
+  <table style="text-align:center;" class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Degree</th>
+        <th>Generation</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+          <td><%= @user.uname %></td>
+          <td><%= @user.email %></td>
+          <td><%= @user.degree %></td>
+          <td><%= @user.generation_degree %></td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+
+<td><div class="btn-group" role="group" aria-label="...">
+  <%= link_to 'Back', users_path, class:"btn btn-primary" %> &nbsp;&nbsp;&nbsp;
+  <%= link_to 'Edit', edit_user_path(current_user.id), class:"btn btn-primary" %>
+</div></td>
+</div>

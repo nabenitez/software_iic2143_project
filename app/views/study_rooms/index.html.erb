@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+<div class='border-form-study-group' align="center">
+
+<h1>Study Rooms</h1>
+
+<table style="text-align:center;" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Available score</th>
+      <th>Noise score</th>
+      <th>Plug score</th>
+      <th>Capacity</th>
+      <th>Availability</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @study_rooms.each do |study_room| %>
+      <tr>
+        <% evals = RoomEvaluation.where(:study_room_id => study_room.id)%>
+
+        <td><%= study_room.name %></td>
+
+        <% if evals.present? %>
+          <td><%= evals.average(:available_score).round(2) %></td>
+          <td><%= evals.average(:noise_score).round(2) %></td>
+          <td><%= evals.average(:plug_score).round(2) %></td>
+
+        <% else %>
+          <td> - </td>
+          <td> - </td>
+          <td> - </td>
+        <% end %>
+
+        <td><%= study_room.capacity %></td>
+        <td><%= study_room.availability %></td>
+        <td><div class="btn-group" role="group" aria-label="...">
+          <%= link_to 'Show', study_room, class:"btn btn-primary" %>
+          <%= link_to 'Edit', edit_study_room_path(study_room), class:"btn btn-primary" %>
+          <%= link_to 'Destroy', study_room, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </div></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'New Study Room', new_study_room_path, class:"btn btn-primary" %>
+&nbsp;&nbsp;&nbsp;
+<%= link_to 'Home', root_path, class:"btn btn-primary" %>
+&nbsp;&nbsp;&nbsp;
+<%= link_to 'Evaluate Study Room', room_evaluations_path, class:"btn btn-primary" %>
+<%#= link_to 'Evaluate Study Room', show_evaluatable_study_room_path, class:"btn btn-primary" %>
+</div>

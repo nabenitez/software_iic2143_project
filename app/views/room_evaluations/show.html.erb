@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Study room:</strong>
+  <%= @room_evaluation.study_room_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @room_evaluation.user_id %>
+</p>
+
+<p>
+  <strong>Available Score:</strong>
+  <%= @room_evaluation.available_score %>
+</p>
+
+<p>
+  <strong>Noise Score:</strong>
+  <%= @room_evaluation.noise_score %>
+</p>
+
+<p>
+  <strong>Plug Score:</strong>
+  <%= @room_evaluation.plug_score %>
+</p>
+
+
+<%= link_to 'Edit', edit_room_evaluation_path(@room_evaluation) %> |
+<%= link_to 'Back', room_evaluations_path %>

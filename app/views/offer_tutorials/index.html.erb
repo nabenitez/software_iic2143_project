@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+<div class='border-form-study-group' align="center">
+<h1>Offer Tutorials</h1>
+
+<table style="text-align:center;" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Teacher</th>
+      <th>Course</th>
+      <th>Duration (hours)</th>
+      <th>Price</th>
+      <th>Start</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @offer_tutorials.each do |offer_tutorial| %>
+      <tr>
+        <td><%= offer_tutorial.teacher %></td>
+        <td><%= offer_tutorial.acronym %></td>
+        <td><%= offer_tutorial.duration %></td>
+        <td><%= offer_tutorial.price %></td>
+        <td><%= offer_tutorial.start %></td>
+        <td><div class="btn-group" role="group" aria-label="...">
+          <%= link_to 'Edit', edit_offer_tutorial_path(offer_tutorial), class:"btn btn-primary" %>
+          <%= link_to 'Join', edit_offer_tutorial_path(offer_tutorial), class:"btn btn-success" %>
+          <%= link_to 'Destroy', offer_tutorial, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </div></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Offer Tutorial', new_offer_tutorial_path, class: "btn btn-primary"  %>

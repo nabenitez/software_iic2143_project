@@ -1,0 +1,21 @@
+
+<div class='border-form-study-group' align="center">
+<h1>Evaluation Form</h1>
+
+<%= form_for RoomEvaluation.create() do |form| %>
+  <%= form.label :available_score %>
+  <%= form.number_field :available_score%><br>
+  <%= form.label :noise_score %>
+  <%= form.number_field :noise_score %><br>
+  <%= form.label :plug_score %>
+  <%= form.number_field :plug_score %><br>
+  <%= form.label :comment %>
+  <%= form.text_field :comment%><br><br><br>
+
+  <%= form.hidden_field :user_id, :value=> params[:user_id]%>
+  <%= form.hidden_field :study_room_id, :value=> params[:study_room_id]%>
+  <br><br><br>
+
+<%= form.submit 'Submit', class:"btn btn-primary" %>
+
+<% end %>

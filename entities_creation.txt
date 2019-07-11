@@ -1,0 +1,38 @@
+
+Event:
+docker-compose run web rails generate scaffold Event eventid:integer available_space:integer uid:integer date_time_creation:timestamp roomid:integer
+
+Studyroom:
+docker-compose run web rails generate scaffold StudyRoom roomid:integer name:string available_score:float noise_score:float plug_score:float capacity:integer availability:boolean
+
+Note
+docker-compose run web rails generate scaffold Note noteid:integer title:string uid:integer date_time_creation:timestamp courseid:integer content:text description:text file_path:string reputation_score:float
+
+NoteEvaluation
+docker-compose run web rails generate scaffold NoteEvaluation nevaluationid:integer uid:integer noteid:integer score:integer
+
+NoteComment
+docker-compose run web rails generate scaffold NoteComment ncommentid:integer uid:integer noteid:integer date_time_creation:timestamp content:text reputation_score:integer
+
+13. RoomEvaluation
+docker-compose run web rails generate scaffold RoomEvaluation revaluationid:integer uid:integer roomid:integer roomscore:integer
+
+
+14. RoomComment
+docker-compose run web rails generate scaffold RoomComment rcommentid:integer uid:integer roomid:integer content:text date_time_creation:timestamp reputation_score:integer
+
+
+9. Message
+docker-compose run web rails generate scaffold Message mid:integer uid_1:integer uid_2:integer content:text
+
+
+10. Campus
+docker-compose run web rails generate scaffold Campus campusid:integer name:string location:string map:string
+
+
+11. PendingRequest
+docker-compose run web rails generate scaffold PendingRequest pendingid:integer uid:integer img_path:string
+
+
+12. Course
+docker-compose run web rails generate scaffold Course courseid:integer acronym:string name:string

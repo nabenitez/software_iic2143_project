@@ -1,0 +1,32 @@
+<%= form_with(model: search_tutorial, local: true) do |form| %>
+  <% if search_tutorial.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(search_tutorial.errors.count, "error") %> prohibited this search_tutorial from being saved:</h2>
+
+      <ul>
+      <% search_tutorial.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :duration %>
+    <%= form.number_field :duration, id: :search_tutorial_duration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :course %>
+    <%= form.text_field :course, id: :search_tutorial_course %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start %>
+    <%= form.date_select :start, id: :search_tutorial_start %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

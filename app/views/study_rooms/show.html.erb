@@ -1,0 +1,110 @@
+<p id="notice"><%= notice %></p>
+<div class='border-form-study-group' align="center">
+
+
+<h1> Show Study Room </h1>
+<table style="text-align:center;" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Available score</th>
+      <th>Noise score</th>
+      <th>Plug score</th>
+      <th>Capacity</th>
+      <th>Availability</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <% evals = RoomEvaluation.where(:study_room_id => @study_room.id)%>
+
+  <tbody>
+      <td><%= @study_room.name %></td>
+
+      <% if evals.present? %>
+        <td><%= evals.average(:available_score).round(2) %></td>
+        <td><%= evals.average(:noise_score).round(2) %></td>
+        <td><%= evals.average(:plug_score).round(2) %></td>
+      <% else %>
+        <td> - </td>
+        <td> - </td>
+        <td> - </td>
+      <% end %>
+
+      <td><%= @study_room.capacity %></td>
+      <td><%= @study_room.availability %></td>
+      <td><%= link_to 'Edit', edit_study_room_path(@study_room), class:"btn btn-primary" %>
+      </td>
+
+  </tbody>
+</table>
+
+<br><br>
+
+<h1>Study Groups</h1>
+
+<table style="text-align:center;" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Course</th>
+      <th>Start</th>
+      <th>Finish</th>
+      <th>Day</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @study_room.study_groups.each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+        <td><%= group.acronym %></td>
+        <td><%= group.start.strftime('%I:%M %p') %></td>
+        <td><%= group.finish.strftime('%I:%M %p') %></td>
+        <td><%= group.start.strftime('%A') %></td>
+        <td><div class="btn-group" role="group" aria-label="...">
+          <%= link_to 'Show', study_room_study_group_path(@study_room, group), class:"btn btn-primary" %>
+          <%= link_to 'Edit', edit_study_room_study_group_path(@study_room, group), class:"btn btn-primary" %>
+          <%= link_to 'Destroy', study_room_study_group_path(@study_room, group), method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+        </div></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br><br>
+
+<h1> Comments </h1>
+<table style="text-align:center;" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Comment</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <% evals.each do |eval| %>
+      <% usr = User.find(eval.user_id)%>
+      <% if eval.comment %>
+        <tr>
+          <td><%= usr.uname %></td>
+          <td><%= eval.comment %></td>
+          <td><%= eval.updated_at.strftime("%m/%d/%Y") %></td>
+          <td><%= link_to 'Profile', user_path(usr.id) %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<%= link_to 'Back', study_rooms_path, class:"btn btn-primary" %>
+
+</div>

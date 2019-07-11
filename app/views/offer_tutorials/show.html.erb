@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @offer_tutorial.duration %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @offer_tutorial.price %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @offer_tutorial.start %>
+</p>
+
+<%= link_to 'Edit', edit_offer_tutorial_path(@offer_tutorial) %> |
+<%= link_to 'Back', offer_tutorials_path %>

@@ -1,0 +1,47 @@
+
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this study_group from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :uname %>
+    <%= form.text_field :uname, id: :user_uname %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :user_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :degree %>
+    <%= form.text_field :degree, id: :user_degree %>
+  </div>
+
+  <div class="field">
+    <%= form.label :degree_generation %>
+    <%= form.text_field :generation_degree, id: :user_generation_degree %>
+  </div>
+
+  <div class="image-upload">
+    <%= form.label :picture %>
+    <%= form.file_field :picture%>
+  </div>
+
+  <br>
+
+  <%= link_to "Change your password", edit_user_registration_path %>
+  <br><br>
+  <div class="actions">
+    <%= form.submit 'Submit', class:"btn btn-secondary active" %>
+  </div>
+<% end %>

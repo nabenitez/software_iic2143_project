@@ -1,0 +1,35 @@
+<%= form_with(model: offer_tutorial, local: true) do |form| %>
+  <% if offer_tutorial.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(offer_tutorial.errors.count, "error") %> prohibited this offer_tutorial from being saved:</h2>
+
+      <ul>
+      <% offer_tutorial.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :duration %>
+    <%= form.number_field :duration, id: :offer_tutorial_duration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.number_field :price, id: :offer_tutorial_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start %>
+    <%= form.date_select :start, id: :offer_tutorial_start %>
+  </div>
+  <br>
+
+  <div class="actions">
+    <%= form.submit "Submit", class:"btn btn-success" %>
+  </div>
+
+
+<% end %>

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+<div class='border-form-study-group' align="center">
+<h1>Study Groups</h1>
+
+<div class="row">
+  <table style="text-align:center;" class="table table-hover">
+    <thead>
+      <tr>
+        <th>Group name</th>
+        <th>Course</th>
+        <th>Available space</th>
+        <th>Start</th>
+        <th>Finish</th>
+        <th>Room name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @study_groups.each do |study_group| %>
+        <tr>
+          <td><%= study_group.name %></td>
+          <td><%= link_to study_group.acronym, course_path(study_group) %></td>
+          <td><%=  StudyRoom.find(study_group.study_room_id).capacity - StudyGroupUser.all.where(:study_group_id => study_group.id).count %></td>
+          <td><%= study_group.start.strftime('%d-%m-%Y %R') %></td>
+          <td><%= study_group.finish.strftime('%d-%m-%Y %R') %></td>
+          <td><%= link_to StudyRoom.find(study_group.study_room_id).name, study_room_path(study_group) %></td>
+          <td><div class="btn-group" role="group" aria-label="...">
+          <%= link_to 'Show', study_group, class:"btn btn-primary" %>
+
+          <% if can? :update, study_group %>
+            <%= link_to 'Edit', edit_study_group_path(study_group), class:"btn btn-primary"  %>
+          <% end %>
+          <%= link_to 'Join', join_study_group_path(study_group), class: 'btn btn-success'%>
+          <%= link_to 'Destroy', study_group, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'%>
+          </div></td>
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<br>
+
+
+<%= link_to 'New Study Group', new_study_group_path, class:"btn btn-primary" %>
+&nbsp;&nbsp;&nbsp;
+<%= link_to 'Home', root_path, class:"btn btn-primary" %>
+</div>

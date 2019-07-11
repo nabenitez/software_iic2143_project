@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+
+  <h1 id=titlesmall > Bienvenido  </h1>
+  <h1 id=titlesmall > <%= current_user.uname.split(' ')[0] %>!  </h1>
+
+
+
+<% else %>
+  <h1 id=title> Rooms</h1>
+  <h1 id=title>  Manager</h1>
+<% end %>

@@ -1,10 +1,20 @@
 source 'https://rubygems.org'
+ruby "2.5.0"
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
 
+# gems added
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'devise'
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'
+gem 'rolify'
+gem 'cancancan'
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
@@ -48,6 +58,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rubocop', require: false
+  gem 'rubocop-performance'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

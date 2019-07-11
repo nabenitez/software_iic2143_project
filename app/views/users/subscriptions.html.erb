@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<div class='border-form-study-group' align="center">
+<h1>My courses</h1>
+
+<div class="row">
+<table style="text-align:center;" class="table table-hover">
+
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Acronym</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+    <% @user.courses.each do |course| %>
+      <tr>
+
+        <td><%= course.name %></td>
+        <td><%= course.acronym %></td>
+        <td>
+        <div class="btn-group" role="group" aria-label="...">
+          <%= link_to 'Show', course, class:"btn btn-primary" %>
+          <%= link_to 'Unsubscribe', unsubscribe_course_path(course), data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+        </div></td>
+
+    <% end %>
+
+    </tbody>
+</table>
+</div>
+</div>
+
+
+<br>

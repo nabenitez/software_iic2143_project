@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+<div class='border-form-study-group' align="center">
+
+
+<br><br>
+
+<h1> Show Study Group </h1>
+<table style="text-align:center;" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Group name</th>
+      <th>Acronym</th>
+      <th>Available space</th>
+      <th>Start</th>
+      <th>Finish</th>
+      <th>Room name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+      <td><%= @study_group.name %></td>
+      <td><%= @study_group.acronym %></td>
+      <td><%= StudyRoom.find(@study_group.study_room_id).capacity - StudyGroupUser.all.where(:study_group_id => @study_group.id).count %></td>
+      <td><%= @study_group.start %></td>
+      <td><%= @study_group.finish %></td>
+      <td><%= StudyRoom.find(@study_group.study_room_id).name %></td>
+      <td><div class="btn-group" role="group" aria-label="...">
+        <%= link_to 'Edit', edit_study_group_path(@study_group), class:"btn btn-primary" %>
+        <%= link_to 'Join', join_study_group_path(@study_group), class:"btn btn-success"  %>
+      </div></td>
+  </tbody>
+</table>
+
+<br><br>
+
+<h1> Participants </h1>
+<table style="text-align:center;" class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @study_group.users.each do |user| %>
+      <tr>
+        <td><%= user.uname %></td>
+        <td><%= user.email %></td>
+        <td><div class="btn-group" role="group" aria-label="...">
+          <%= link_to 'Show', study_group_user_path(@study_group, user), class:"btn btn-primary" %>
+          <%= link_to 'Destroy', User.find(user.id).study_group_users.destroy, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+        </div></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br><br>
+<%= link_to 'Back', study_groups_path, class:"btn btn-secondary" %>
+</div>
